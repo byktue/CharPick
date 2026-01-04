@@ -1,0 +1,15 @@
+name: charpick
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+    - pydantic
+    - langextract
+    - httpx
+    - requests
+    - tqdm
+    - chardet
+    - jinja2
+    - pandas

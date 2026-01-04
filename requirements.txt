@@ -1,0 +1,8 @@
+pydantic
+langextract
+httpx
+requests
+tqdm
+chardet
+jinja2
+pandas
