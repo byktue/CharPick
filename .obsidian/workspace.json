@@ -1,0 +1,240 @@
+{
+  "main": {
+    "id": "11d5725572f88607",
+    "type": "split",
+    "children": [
+      {
+        "id": "8791f2a7340422d9",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1a34ff93b30a7158",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "README.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "README"
+            }
+          },
+          {
+            "id": "5835f71048b1fd7f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "README.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "README"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "c21930e38e27a1fa",
+    "type": "split",
+    "children": [
+      {
+        "id": "b075f39f96002244",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d441c0489f9d5ada",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "0863eb883629fa0b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "5e327c4560daf59d",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "9c4d2fef83de567f",
+    "type": "split",
+    "children": [
+      {
+        "id": "cd8680a945715b17",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "df13cca538a598cc",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "README.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "README 的反向链接列表"
+            }
+          },
+          {
+            "id": "d718ac03d173bd85",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "README.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "README 的出链列表"
+            }
+          },
+          {
+            "id": "f32948d5b3b1a043",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "4764355f429c91c2",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "80daa3c0bcd98f4d",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "README.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "README 的大纲"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false
+    }
+  },
+  "active": "5835f71048b1fd7f",
+  "lastOpenFiles": [
+    "output/process.log",
+    "frontend/vite.config.js.timestamp-1769014284244-1b01e48ee90678.mjs",
+    "docs/20260122代办清单整理.md",
+    "docs/20260122思考整理.md",
+    "docs/增添新的前端.md",
+    "docs/CharPick_TODO.md",
+    "docs/file-tree.md",
+    "output/charpick_v3_database.jsonl",
+    "frontend/vite.config.js.timestamp-1768981550576-64aa8d781ed84.mjs",
+    "frontend/package-lock.json",
+    "frontend/node_modules/@esbuild/win32-x64/README.md",
+    "frontend/node_modules/@esbuild/win32-x64/package.json",
+    "frontend/node_modules/axios/index.d.ts",
+    "frontend/node_modules/axios/README.md",
+    "frontend/node_modules/axios/lib/helpers/README.md",
+    "frontend/node_modules/axios/lib/env/README.md",
+    "frontend/node_modules/axios/lib/core/README.md",
+    "frontend/node_modules/axios/lib/adapters/README.md",
+    "frontend/node_modules/axios/MIGRATION_GUIDE.md",
+    "frontend/node_modules/axios/CHANGELOG.md",
+    "frontend/node_modules/axios/dist/esm/axios.min.js.map",
+    "frontend/node_modules/axios/dist/axios.min.js.map",
+    "frontend/node_modules/axios/dist/esm/axios.js.map",
+    "frontend/node_modules/axios/dist/axios.js.map",
+    "frontend/node_modules/vite/README.md",
+    "frontend/node_modules/vite/LICENSE.md",
+    "frontend/node_modules/@vue/runtime-dom/README.md",
+    "frontend/node_modules/es-set-tostringtag/README.md",
+    "frontend/node_modules/es-set-tostringtag/CHANGELOG.md",
+    "frontend/node_modules/form-data/README.md",
+    "frontend/node_modules/form-data/CHANGELOG.md",
+    "frontend/node_modules/vue/README.md",
+    "frontend/node_modules/@vitejs/plugin-vue/README.md",
+    "frontend/node_modules/@vue/runtime-core/README.md",
+    "frontend/node_modules/combined-stream/Readme.md",
+    "frontend/node_modules/es-errors/README.md"
+  ]
+}

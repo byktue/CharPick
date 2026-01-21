@@ -1,0 +1,11 @@
+/* 基本样式，供 App.vue 使用 */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: #f0f2f5;
+}
+
+.charpick-app { display: flex; gap: 20px; padding: 30px; height: 100vh; }
+.panel { flex: 1; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.06); }
+textarea { width: 100%; margin: 15px 0; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+.primary-btn { width: 100%; padding: 12px; background: #42b883; color: white; border: none; border-radius: 6px; cursor: pointer; }

@@ -6,3 +6,5 @@ tqdm
 chardet
 jinja2
 pandas
+fastapi
+uvicorn

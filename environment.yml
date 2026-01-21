@@ -1,15 +1,19 @@
 name: charpick
 channels:
+  - conda-forge
   - defaults
 dependencies:
   - python=3.10
+  - nodejs
   - pip
   - pip:
-    - pydantic
-    - langextract
-    - httpx
-    - requests
-    - tqdm
-    - chardet
-    - jinja2
-    - pandas
+      - fastapi
+      - uvicorn[standard]
+      - pydantic
+      - langextract
+      - httpx
+      - requests
+      - tqdm
+      - chardet
+      - jinja2
+      - pandas
