@@ -4,39 +4,53 @@
     "type": "split",
     "children": [
       {
-        "id": "8791f2a7340422d9",
-        "type": "tabs",
+        "id": "1d6e8bb6ead8770f",
+        "type": "split",
         "children": [
           {
-            "id": "1a34ff93b30a7158",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "README.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "README"
-            }
+            "id": "8791f2a7340422d9",
+            "type": "tabs",
+            "dimension": 18.115942028985508,
+            "children": [
+              {
+                "id": "1a34ff93b30a7158",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "人设提取案例模板.md",
+                    "mode": "source",
+                    "source": false
+                  },
+                  "icon": "lucide-file",
+                  "title": "人设提取案例模板"
+                }
+              }
+            ]
           },
           {
-            "id": "5835f71048b1fd7f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "README.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "README"
-            }
+            "id": "ba7db04d76cc6ca1",
+            "type": "tabs",
+            "dimension": 81.88405797101449,
+            "children": [
+              {
+                "id": "88027720943d072b",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "docs/tech-summary-20260331.md",
+                    "mode": "source",
+                    "source": false
+                  },
+                  "icon": "lucide-file",
+                  "title": "tech-summary-20260331"
+                }
+              }
+            ]
           }
         ],
-        "currentTab": 1
+        "direction": "horizontal"
       }
     ],
     "direction": "vertical"
@@ -198,21 +212,33 @@
       "bases:新建数据库": false
     }
   },
-  "active": "5835f71048b1fd7f",
+  "active": "88027720943d072b",
   "lastOpenFiles": [
-    "output/process.log",
-    "frontend/vite.config.js.timestamp-1769014284244-1b01e48ee90678.mjs",
-    "docs/20260122代办清单整理.md",
+    "技术路径.md",
+    "docs/tech-summary-20260331.md",
+    "人设提取案例模板.md",
+    "待办事项.md",
+    "README.md",
+    "output/charpick_v3_database_20260224_205108.jsonl",
+    "frontend/vite.config.js.timestamp-1771937281321-7b1138f38238f.mjs",
+    "output/charpick_v3_database_20260224_204127.jsonl",
+    "backend/__pycache__/langextract.cpython-310.pyc",
+    "output/charpick_v3_database_20260224_174014.jsonl",
+    "frontend/vite.config.js.timestamp-1771925974964-e1d8a696458a28.mjs",
+    "紧急代办.md",
+    "backend/__pycache__/main.cpython-313.pyc",
+    "backend/__pycache__/long.cpython-313.pyc",
+    "backend/__pycache__/langextract.cpython-313.pyc",
+    "output/charpick_v3_database_20260224_145627.jsonl",
     "docs/20260122思考整理.md",
+    "docs/人设提取.md",
+    "docs/对接各板块_1.md",
+    "Pasted image 20260122012145.png",
+    "docs/20260122代办清单整理.md",
     "docs/增添新的前端.md",
     "docs/CharPick_TODO.md",
     "docs/file-tree.md",
-    "output/charpick_v3_database.jsonl",
-    "frontend/vite.config.js.timestamp-1768981550576-64aa8d781ed84.mjs",
-    "frontend/package-lock.json",
     "frontend/node_modules/@esbuild/win32-x64/README.md",
-    "frontend/node_modules/@esbuild/win32-x64/package.json",
-    "frontend/node_modules/axios/index.d.ts",
     "frontend/node_modules/axios/README.md",
     "frontend/node_modules/axios/lib/helpers/README.md",
     "frontend/node_modules/axios/lib/env/README.md",
@@ -220,21 +246,10 @@
     "frontend/node_modules/axios/lib/adapters/README.md",
     "frontend/node_modules/axios/MIGRATION_GUIDE.md",
     "frontend/node_modules/axios/CHANGELOG.md",
-    "frontend/node_modules/axios/dist/esm/axios.min.js.map",
-    "frontend/node_modules/axios/dist/axios.min.js.map",
-    "frontend/node_modules/axios/dist/esm/axios.js.map",
-    "frontend/node_modules/axios/dist/axios.js.map",
     "frontend/node_modules/vite/README.md",
     "frontend/node_modules/vite/LICENSE.md",
     "frontend/node_modules/@vue/runtime-dom/README.md",
     "frontend/node_modules/es-set-tostringtag/README.md",
-    "frontend/node_modules/es-set-tostringtag/CHANGELOG.md",
-    "frontend/node_modules/form-data/README.md",
-    "frontend/node_modules/form-data/CHANGELOG.md",
-    "frontend/node_modules/vue/README.md",
-    "frontend/node_modules/@vitejs/plugin-vue/README.md",
-    "frontend/node_modules/@vue/runtime-core/README.md",
-    "frontend/node_modules/combined-stream/Readme.md",
-    "frontend/node_modules/es-errors/README.md"
+    "frontend/node_modules/es-set-tostringtag/CHANGELOG.md"
   ]
 }

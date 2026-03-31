@@ -12,13 +12,25 @@
       <div class="form-group">
         <label>逻辑模板：</label>
         <div class="template-btns">
-          <button v-for="t in templates" :key="t.name" @click="currentPrompt = t.prompt">
+          <button v-for="t in templates" :key="t.name" @click="changeTemplate(t)">
             {{ t.name }}
           </button>
         </div>
       </div>
+
+      <div class="form-group">
+        <label>自定义提取字段（逗号分隔）：</label>
+        <input v-model="customFields" placeholder="如：场景,道具,心理" />
+      </div>
       
       <textarea v-model="currentPrompt" rows="8" placeholder="输入 Prompt..."></textarea>
+      <div class="form-group toggle-row">
+        <label class="toggle-label">
+          <input type="checkbox" v-model="filterNoise" />
+          过滤前言中的广告/图注/媒体块
+        </label>
+        <div class="toggle-hint">仅作用于自序/前言，不影响正文章节。</div>
+      </div>
       <button class="primary-btn" @click="runTask" :disabled="!selectedFile">
         🚀 开始批量提取
       </button>
@@ -56,23 +68,75 @@ import axios from 'axios';
 
 const files = ref([]);
 const selectedFile = ref('');
-const currentPrompt = ref('提取本章角色的 role behavior (行为) 及 speech (对白)。');
+const currentPrompt = ref('');
+const filterNoise = ref(true);
+const customFields = ref('');
 const logs = ref([]);
 const logBoxRef = ref(null);
 let eventSource = null;
 const templates = [
-  { name: '言行提取', prompt: '提取本章角色的 role behavior (行为) 及 speech (对白)。' },
-  { name: '剧情梗概', prompt: '提取本章的核心 plot_summary 和时间线。' },
-  { name: '人设分析', prompt: '基于本章内容，分析主要角色的性格关键词、动机和潜在情绪。' }
+  {
+    name: '言行提取',
+    prompt: '请提取本章所有出场角色的相关信息，输出标准JSON格式：1. 角色名：准确提取角色真实名称，无角色名标注为「未知」；2. 行为：提取角色的动作、神态、行为表现，多个行为用数组表示；3. 对白：提取角色的直接对话内容，无对白则为空数组，有多个对白则分别列出；4. 若有角色的心理活动、神态描写，可新增「psychology」字段补充；JSON结构要求：{characters: [{name: 字符串, behavior: 数组, speech: 数组, psychology?: 数组}]}',
+    schema: {
+      characters: [
+        {
+          name: '石野',
+          behavior: ['大喊', '紧握拳头', '看向镜子'],
+          speech: ['我不信！'],
+          psychology: ['质疑', '难以置信']
+        }
+      ]
+    }
+  },
+  {
+    name: '剧情梗概',
+    prompt: '请提取本章核心剧情信息，输出标准JSON格式：1. plot_summary：本章核心剧情的简洁概括（200字内）；2. timeline：按时间顺序排列的关键剧情节点，用数组表示；3. characters：本章核心出场角色列表，用数组表示；JSON结构要求：{plot_summary: 字符串, timeline: 数组, characters: 数组}',
+    schema: {
+      plot_summary: '石野因某事产生质疑，对着镜子表达自己的不信，情绪激动。',
+      timeline: ['石野看到镜子中的内容', '石野大喊表达质疑', '石野紧握拳头看向镜子'],
+      characters: ['石野']
+    }
+  },
+  {
+    name: '人设分析',
+    prompt: '请分析本章主要角色的人设信息，输出标准JSON格式：1. name：角色名；2. personality：性格关键词，用数组表示；3. motivation：角色的行为动机/目的；4. emotion：角色本章的核心情绪，用数组表示；5. feature：角色的显著特征（外貌/行为/性格），可补充；JSON结构要求：{characters: [{name: 字符串, personality: 数组, motivation: 字符串, emotion: 数组, feature?: 字符串}]}',
+    schema: {
+      characters: [
+        {
+          name: '石野',
+          personality: ['冲动', '直率'],
+          motivation: '对眼前事物产生质疑并寻求答案',
+          emotion: ['愤怒', '难以置信'],
+          feature: '情绪外露，行为直接'
+        }
+      ]
+    }
+  }
 ];
 
-const example = {
+const example = ref({
   text: "石野大喊：‘我不信！’，他紧握拳头看向镜子。",
-  attributes: { 
-    characters: [
-      { name: "石野", role_behavior: "握拳看向镜子", speech: "\"我不信！\"" }
-    ] 
-  }
+  attributes: {}
+});
+
+const buildPromptWithCustomFields = (basePrompt) => {
+  const raw = customFields.value.trim();
+  if (!raw) return basePrompt;
+  const fields = raw
+    .split(/[，,]/)
+    .map((item) => item.trim())
+    .filter(Boolean);
+  if (!fields.length) return basePrompt;
+  const customRule = fields
+    .map((field) => `${field}：提取相关${field}信息，无则为空`)
+    .join('；');
+  return `${basePrompt}\n补充字段要求：${customRule}。`;
+};
+
+const changeTemplate = (template) => {
+  currentPrompt.value = buildPromptWithCustomFields(template.prompt);
+  example.value.attributes = template.schema;
 };
 
 onMounted(async () => {
@@ -80,6 +144,9 @@ onMounted(async () => {
     const res = await axios.get('http://localhost:8000/files');
     files.value = res.data;
     if (files.value.length > 0) selectedFile.value = files.value[0];
+    if (templates.length > 0) {
+      changeTemplate(templates[0]);
+    }
     
     // 初始化日志连接
     connectLogs();
@@ -119,7 +186,8 @@ const runTask = async () => {
   try {
     await axios.post('http://localhost:8000/start-extraction', {
       file_name: selectedFile.value,
-      prompt: currentPrompt.value
+      prompt: currentPrompt.value,
+      filter_noise: filterNoise.value
     });
     // 不需要 alert 了，日志会显示开始
   } catch (error) {
@@ -137,8 +205,13 @@ const runTask = async () => {
 h2, h3 { margin-top: 0; color: #333; }
 .form-group { margin-bottom: 15px; }
 label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
-select, textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; box-sizing: border-box;}
+select, textarea, input:not([type="checkbox"]) { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-family: inherit; box-sizing: border-box;}
 textarea { resize: vertical; }
+
+.toggle-row { margin-top: 10px; }
+.toggle-label { display: flex; align-items: center; gap: 8px; font-weight: 600; margin-bottom: 4px; }
+.toggle-label input[type="checkbox"] { width: auto; padding: 0; border: 0; transform: translateY(1px); }
+.toggle-hint { color: #888; font-size: 12px; }
 
 .template-btns { display: flex; gap: 8px; flex-wrap: wrap; }
 .template-btns button { padding: 6px 12px; background: #e0e0e0; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9em; transition: background 0.2s; }

@@ -20,11 +20,67 @@ app.add_middleware(
 class ExtractionRequest(BaseModel):
     file_name: str
     prompt: str
+    filter_noise: bool = False
+
+
+def _normalize_text_list(value):
+    if isinstance(value, list):
+        return [str(v).strip() for v in value if str(v).strip()]
+    if isinstance(value, str):
+        parts = [p.strip() for p in __import__('re').split(r'[，,、；;\n]+', value) if p.strip()]
+        return parts
+    return []
+
+
+def _normalize_extraction_data(data):
+    """弱约束规范化：只做类型容错，不做模板字段强校验。"""
+    if not isinstance(data, dict):
+        return {}
+
+    normalized = dict(data)
+
+    # 顶层 timeline/characters 若是字符串，转数组
+    if 'timeline' in normalized:
+        normalized['timeline'] = _normalize_text_list(normalized.get('timeline'))
+
+    top_characters = normalized.get('characters')
+    if isinstance(top_characters, list):
+        normalized_chars = []
+        for item in top_characters:
+            if isinstance(item, str):
+                normalized_chars.append(item.strip())
+                continue
+            if not isinstance(item, dict):
+                continue
+
+            char = dict(item)
+            if 'behavior' in char:
+                char['behavior'] = _normalize_text_list(char.get('behavior'))
+            if 'role_behavior' in char and 'behavior' not in char:
+                char['behavior'] = _normalize_text_list(char.get('role_behavior'))
+            if 'speech' in char:
+                char['speech'] = _normalize_text_list(char.get('speech'))
+            if 'actions' in char and 'behavior' not in char:
+                char['behavior'] = _normalize_text_list(char.get('actions'))
+            if 'psychology' in char:
+                char['psychology'] = _normalize_text_list(char.get('psychology'))
+            if 'personality' in char:
+                char['personality'] = _normalize_text_list(char.get('personality'))
+            if 'emotion' in char:
+                char['emotion'] = _normalize_text_list(char.get('emotion'))
+
+            normalized_chars.append(char)
+        normalized['characters'] = normalized_chars
+    elif isinstance(top_characters, str):
+        normalized['characters'] = _normalize_text_list(top_characters)
+
+    return normalized
 
 # --- 日志辅助功能 ---
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 LOG_FILE = os.path.join(BASE_DIR, "output", "process.log")
-OUTPUT_FILE = os.path.join(BASE_DIR, "output", "charpick_v3_database.jsonl")
+OUTPUT_DIR = os.path.join(BASE_DIR, "output")
+DEFAULT_OUTPUT_FILE = os.path.join(OUTPUT_DIR, "charpick_v3_database.jsonl")
 
 def write_log(message: str):
     """同时打印到终端并写入日志文件"""
@@ -36,15 +92,17 @@ def write_log(message: str):
         f.write(f"[{timestamp}] {message}\n")
 
 # --- 修改后的后台任务 ---
-def background_extraction_task(file_path: str, custom_prompt: str):
+def background_extraction_task(file_path: str, custom_prompt: str, filter_noise: bool, output_file: str):
     write_log(f"🚀 开始任务: 处理文件 {os.path.basename(file_path)}")
     try:
-        chapters = advanced_split_novel(file_path)
+        write_log(f"🧹 噪声过滤: {'开启' if filter_noise else '关闭'}")
+        chapters = advanced_split_novel(file_path, filter_noise=filter_noise)
         write_log(f"📚 小说切分完成，共 {len(chapters)} 章")
         
-        os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
+        os.makedirs(os.path.dirname(output_file), exist_ok=True)
+        write_log(f"📝 输出文件: {os.path.basename(output_file)}")
 
-        with open(OUTPUT_FILE, "a", encoding="utf-8") as f_out:
+        with open(output_file, "a", encoding="utf-8") as f_out:
             for idx, chapter in enumerate(chapters):
                 write_log(f"⏳ 正在处理: {chapter['title']} ({idx+1}/{len(chapters)})...")
                 
@@ -52,14 +110,30 @@ def background_extraction_task(file_path: str, custom_prompt: str):
                 try:
                     # 尝试使用 langextract
                     try:
-                        import langextract as lx
+                        from backend import langextract as lx
                         result = lx.extract(
                             text_or_documents=chunk_text,
                             prompt_description=custom_prompt,
                             examples=EXAMPLES,
                             model=local_model
                         )
-                        extraction_data = result.extractions[0].attributes if result.extractions else {}
+                        extraction_data = {}
+                        write_log(f"🧾 提取原始返回类型: {type(result).__name__}")
+                        if isinstance(result, dict):
+                            extractions = result.get("extractions") or []
+                            if extractions:
+                                first = extractions[0]
+                                if isinstance(first, dict):
+                                    extraction_data = first.get("attributes", {}) or {}
+                        else:
+                            extractions = getattr(result, "extractions", None)
+                            if extractions:
+                                first = extractions[0]
+                                if isinstance(first, dict):
+                                    extraction_data = first.get("attributes", {}) or {}
+                                else:
+                                    extraction_data = getattr(first, "attributes", {}) or {}
+                        extraction_data = _normalize_extraction_data(extraction_data)
                     except Exception as e:
                         extraction_data = {"note": "提取失败或库不可用", "error": str(e)}
 
@@ -99,6 +173,13 @@ async def log_stream():
             f.seek(0, 2) 
             
             while True:
+                # 处理日志文件被截断的情况（例如新任务清空日志）
+                try:
+                    if os.path.getsize(LOG_FILE) < f.tell():
+                        f.seek(0)
+                except OSError:
+                    pass
+
                 line = f.readline()
                 if line:
                     # SSE 格式: data: <content>\n\n
@@ -106,7 +187,11 @@ async def log_stream():
                 else:
                     await asyncio.sleep(0.5) # 没有新日志时等待
                     
-    return StreamingResponse(log_generator(), media_type="text/event-stream")
+    headers = {
+        "Cache-Control": "no-cache",
+        "X-Accel-Buffering": "no",
+    }
+    return StreamingResponse(log_generator(), media_type="text/event-stream", headers=headers)
 
 
 # --- 原有接口 ---
@@ -126,9 +211,12 @@ async def start(req: ExtractionRequest, background_tasks: BackgroundTasks):
     # 清空旧日志 (可选，看你是否想保留历史)
     with open(LOG_FILE, "w", encoding="utf-8") as f:
         f.write(f"[System] 新任务启动 - {req.file_name}\n")
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    timestamp = time.strftime("%Y%m%d_%H%M%S", time.localtime())
+    output_file = os.path.join(OUTPUT_DIR, f"charpick_v3_database_{timestamp}.jsonl")
         
-    background_tasks.add_task(background_extraction_task, file_path, req.prompt)
-    return {"status": "started"}
+    background_tasks.add_task(background_extraction_task, file_path, req.prompt, req.filter_noise, output_file)
+    return {"status": "started", "output_file": os.path.basename(output_file)}
 
 
 if __name__ == "__main__":
