@@ -4,53 +4,44 @@
     "type": "split",
     "children": [
       {
-        "id": "1d6e8bb6ead8770f",
-        "type": "split",
+        "id": "8791f2a7340422d9",
+        "type": "tabs",
         "children": [
           {
-            "id": "8791f2a7340422d9",
-            "type": "tabs",
-            "dimension": 18.115942028985508,
-            "children": [
-              {
-                "id": "1a34ff93b30a7158",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "人设提取案例模板.md",
-                    "mode": "source",
-                    "source": false
-                  },
-                  "icon": "lucide-file",
-                  "title": "人设提取案例模板"
-                }
-              }
-            ]
-          },
-          {
-            "id": "ba7db04d76cc6ca1",
-            "type": "tabs",
-            "dimension": 81.88405797101449,
-            "children": [
-              {
-                "id": "88027720943d072b",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "docs/tech-summary-20260331.md",
-                    "mode": "source",
-                    "source": false
-                  },
-                  "icon": "lucide-file",
-                  "title": "tech-summary-20260331"
-                }
-              }
-            ]
+            "id": "1a34ff93b30a7158",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "docs/项目分阶段详细规划.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "项目分阶段详细规划"
+            }
           }
-        ],
-        "direction": "horizontal"
+        ]
+      },
+      {
+        "id": "dd8b1e4a50dac67b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "88027720943d072b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "docs/技术路径.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "技术路径"
+            }
+          }
+        ]
       }
     ],
     "direction": "vertical"
@@ -107,7 +98,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200
   },
   "right": {
     "id": "9c4d2fef83de567f",
@@ -212,11 +203,26 @@
       "bases:新建数据库": false
     }
   },
-  "active": "88027720943d072b",
+  "active": "d441c0489f9d5ada",
   "lastOpenFiles": [
-    "技术路径.md",
+    "Pasted image 20260122012145.png",
+    "docs/技术路径.md",
+    "docs/项目分阶段详细规划.md",
+    "docs.zip",
+    "docs/分工详细.md",
+    "docs/为什么剧本杀适合用 LangExtract？.md",
+    "docs/人设提取.md",
+    "docs/剧本杀角色提取要素.md",
+    "docs/20260122思考整理.md",
+    "docs/20260122代办清单整理.md",
+    "docs/相关技术调研.md",
+    "docs/人设提取案例模板.md",
+    "docs/CharPick_TODO.md",
+    "docs/增添新的前端.md",
+    "docs/file-tree.md",
+    "docs/LangExtract.md",
+    "docs/progress.md",
     "docs/tech-summary-20260331.md",
-    "人设提取案例模板.md",
     "待办事项.md",
     "README.md",
     "output/charpick_v3_database_20260224_205108.jsonl",
@@ -229,27 +235,11 @@
     "backend/__pycache__/main.cpython-313.pyc",
     "backend/__pycache__/long.cpython-313.pyc",
     "backend/__pycache__/langextract.cpython-313.pyc",
-    "output/charpick_v3_database_20260224_145627.jsonl",
-    "docs/20260122思考整理.md",
-    "docs/人设提取.md",
     "docs/对接各板块_1.md",
-    "Pasted image 20260122012145.png",
-    "docs/20260122代办清单整理.md",
-    "docs/增添新的前端.md",
-    "docs/CharPick_TODO.md",
-    "docs/file-tree.md",
     "frontend/node_modules/@esbuild/win32-x64/README.md",
     "frontend/node_modules/axios/README.md",
     "frontend/node_modules/axios/lib/helpers/README.md",
     "frontend/node_modules/axios/lib/env/README.md",
-    "frontend/node_modules/axios/lib/core/README.md",
-    "frontend/node_modules/axios/lib/adapters/README.md",
-    "frontend/node_modules/axios/MIGRATION_GUIDE.md",
-    "frontend/node_modules/axios/CHANGELOG.md",
-    "frontend/node_modules/vite/README.md",
-    "frontend/node_modules/vite/LICENSE.md",
-    "frontend/node_modules/@vue/runtime-dom/README.md",
-    "frontend/node_modules/es-set-tostringtag/README.md",
-    "frontend/node_modules/es-set-tostringtag/CHANGELOG.md"
+    "frontend/node_modules/axios/lib/core/README.md"
   ]
 }
