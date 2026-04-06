@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "docs/项目分阶段详细规划.md",
+                "file": "docs/git 相关操作.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "项目分阶段详细规划"
+              "title": "git 相关操作"
             }
           }
         ]
@@ -31,14 +31,10 @@
             "id": "88027720943d072b",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "docs/技术路径.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "技术路径"
+              "title": "新标签页"
             }
           }
         ]
@@ -203,43 +199,44 @@
       "bases:新建数据库": false
     }
   },
-  "active": "d441c0489f9d5ada",
+  "active": "1a34ff93b30a7158",
   "lastOpenFiles": [
+    "docs/old/增添新的前端.md",
+    "docs/总览技术路径规划/项目分阶段详细规划.md",
+    "docs/总览技术路径规划/剧本杀角色提取要素.md",
+    "docs/总览技术路径规划/相关技术调研.md",
+    "docs/人设提取维度设计/人设提取案例模板.md",
+    "docs/人设提取维度设计/人设提取.md",
+    "docs/old/为什么剧本杀适合用 LangExtract？.md",
+    "docs/人设提取维度设计",
+    "docs/新建文件夹",
+    "docs/总览技术路径规划/技术路径.md",
+    "docs/总览技术路径规划/分工详细.md",
+    "docs/总览技术路径规划/tech-summary-20260331.md",
+    "docs/总览技术路径规划",
+    "docs/数据库规划",
+    "docs/old/progress.md",
+    "docs/old/LangExtract.md",
+    "docs/old/file-tree.md",
+    "docs/old/CharPick_TODO.md",
+    "docs/old/20260122代办清单整理.md",
+    "docs/old/20260121整理进度.md",
+    "docs/old/20260105凌晨工作进度.md",
+    "docs/old/20260122思考整理.md",
+    "docs/old",
+    "docs/项目分阶段详细规划.md",
+    "docs/git 相关操作.md",
     "Pasted image 20260122012145.png",
     "docs/技术路径.md",
-    "docs/项目分阶段详细规划.md",
     "docs.zip",
     "docs/分工详细.md",
     "docs/为什么剧本杀适合用 LangExtract？.md",
     "docs/人设提取.md",
     "docs/剧本杀角色提取要素.md",
     "docs/20260122思考整理.md",
-    "docs/20260122代办清单整理.md",
-    "docs/相关技术调研.md",
-    "docs/人设提取案例模板.md",
-    "docs/CharPick_TODO.md",
-    "docs/增添新的前端.md",
-    "docs/file-tree.md",
-    "docs/LangExtract.md",
-    "docs/progress.md",
-    "docs/tech-summary-20260331.md",
-    "待办事项.md",
-    "README.md",
     "output/charpick_v3_database_20260224_205108.jsonl",
     "frontend/vite.config.js.timestamp-1771937281321-7b1138f38238f.mjs",
     "output/charpick_v3_database_20260224_204127.jsonl",
-    "backend/__pycache__/langextract.cpython-310.pyc",
-    "output/charpick_v3_database_20260224_174014.jsonl",
-    "frontend/vite.config.js.timestamp-1771925974964-e1d8a696458a28.mjs",
-    "紧急代办.md",
-    "backend/__pycache__/main.cpython-313.pyc",
-    "backend/__pycache__/long.cpython-313.pyc",
-    "backend/__pycache__/langextract.cpython-313.pyc",
-    "docs/对接各板块_1.md",
-    "frontend/node_modules/@esbuild/win32-x64/README.md",
-    "frontend/node_modules/axios/README.md",
-    "frontend/node_modules/axios/lib/helpers/README.md",
-    "frontend/node_modules/axios/lib/env/README.md",
-    "frontend/node_modules/axios/lib/core/README.md"
+    "backend/__pycache__/langextract.cpython-310.pyc"
   ]
 }
