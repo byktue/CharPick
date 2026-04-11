@@ -7,6 +7,7 @@ import json
 import asyncio
 import time
 from backend.long import advanced_split_novel, get_ollama_embedding, local_model, EXAMPLES
+from backend.database import SessionLocal, init_db
 
 app = FastAPI(title="CHARPICK API")
 
@@ -16,6 +17,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.on_event("startup")
+def startup_database() -> None:
+    init_db()
 
 class ExtractionRequest(BaseModel):
     file_name: str

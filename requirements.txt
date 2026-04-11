@@ -8,3 +8,6 @@ jinja2
 pandas
 fastapi
 uvicorn
+sqlalchemy
+psycopg2-binary
+alembic

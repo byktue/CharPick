@@ -17,3 +17,6 @@ dependencies:
       - chardet
       - jinja2
       - pandas
+      - sqlalchemy
+      - psycopg2-binary
+      - alembic

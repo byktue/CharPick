@@ -15,7 +15,20 @@ docker start ollama
 docker exec -it ollama ollama pull gemma2:9b
 ```
 
-### 2. Conda 环境配置 (推荐)
+### 2. PostgreSQL 数据库
+本项目当前默认使用 PostgreSQL 作为主库，建议直接用 Docker 启动：
+```bash
+docker compose up -d postgres
+```
+
+数据库连接串默认值如下：
+```bash
+postgresql+psycopg2://charpick:charpick@localhost:5432/charpick
+```
+
+如果你不想用默认值，可以复制 [.env.example](.env.example) 为 `.env`，然后修改 `DATABASE_URL`。
+
+### 3. Conda 环境配置 (推荐)
 使用 `environment.yml` 一键安装 Python 和 **Node.js (npm)** ：
 ```bash
 # 创建环境
@@ -32,7 +45,7 @@ conda activate charpick
 uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000
 ```
 * **API 文档**: 访问 `http://localhost:8000/docs`。
-**功能**: 负责章节切分、调用 Ollama 进行语义提取及向量计算 。
+**功能**: 负责章节切分、调用 Ollama 进行语义提取、向 PostgreSQL 建表并写入结构化数据。
 ### 第二步：启动前端 (Vite)
 进入 `frontend` 目录运行：
 ```bash
@@ -50,6 +63,7 @@ npm run dev
 `backend/`:
 	`main.py`: 提供异步提取任务接口 。
 	`long.py`: 核心逻辑，包含正则切分章节、编码检测及向量回退机制 。
+    `database/`: PostgreSQL ORM、连接配置和表结构定义。
 `output/`: 提取结果将追加至 `charpick_v3_database.jsonl` 。
 
 ---
@@ -61,5 +75,7 @@ npm run dev
 ### 💡 常见问题 (FAQ)
 * **报错 `npm: command not found`?**
 请确保已通过 `environment.yml` 安装 `nodejs` 并在执行 `npm` 命令前激活了 `charpick` 环境。
+* **数据库连不上？**
+请先确认 `docker compose up -d postgres` 已启动，然后检查 `.env` 中的 `DATABASE_URL` 是否与实际账号、密码、端口一致。
 * **提取结果在哪里?**
 结果会实时保存至 `output/charpick_v3_database.jsonl`，每行代表一个章节的结构化数据。
