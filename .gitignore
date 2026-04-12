@@ -1,3 +1,9 @@
 # Ignore data folder and all .jsonl files
 data/
 *.jsonl
+
+.env
+*.pyc
+__pycache__/
+
+docs/数据库规划/Supabase.md
