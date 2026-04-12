@@ -4,35 +4,41 @@
     "type": "split",
     "children": [
       {
-        "id": "43c0fba72f98a4b7",
+        "id": "fc85cf1a193492ac",
         "type": "tabs",
         "children": [
           {
-            "id": "0992e14824397b0c",
+            "id": "eaca5137ee2aac8b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "docs/数据库规划/数据库表设计.md",
+                "file": "docs/总览技术路径规划/接口协议/接口协议-加上用户管理系统.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "数据库表设计"
+              "title": "接口协议-加上用户管理系统"
             }
-          },
+          }
+        ]
+      },
+      {
+        "id": "5b2e8991a8b2cb88",
+        "type": "tabs",
+        "children": [
           {
-            "id": "013f94b15df8651b",
+            "id": "78adf045662dd1e5",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "未命名.md",
+                "file": "database/docs/提交到远程数据库操作指南.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "未命名"
+              "title": "提交到远程数据库操作指南"
             }
           }
         ]
@@ -197,45 +203,44 @@
       "bases:新建数据库": false
     }
   },
-  "active": "0992e14824397b0c",
+  "active": "78adf045662dd1e5",
   "lastOpenFiles": [
-    "docs/数据库规划/推荐总体框架.md",
+    "database/docs/Supabase使用文档.md",
+    "database/docs/提交到远程数据库操作指南.md",
+    "docs/数据库规划/Supabase.md",
+    "condaenv.7qssu104.requirements.txt",
+    "database/docs",
     "docs/数据库规划/数据库表设计.md",
-    "docs/数据库规划/数据库技术实现预览.md",
-    "docs/数据库规划/总体架构.md",
-    "docs/数据库规划/数据库技术实现预览 copy.md",
+    "database/__pycache__/bootstrap.cpython-313.pyc",
+    "database/__pycache__",
+    "database/README.md",
+    "database/bootstrap.py",
+    "database/001_init_auth_l0_l2.sql",
+    "database",
+    "backend/database.py",
+    "src/database/schema.sql",
+    "src/database/__init__.py",
     "docs/总览技术路径规划/接口协议/接口协议-加上用户管理系统.md",
     "docs/总览技术路径规划/接口协议/接口协议.md",
-    "docs/总览技术路径规划/接口协议/接口协议（存档）.md",
-    "docs/数据库规划/PostgreSQL安装与部署.md",
     "docs/数据库规划/数据库预设.md",
+    "docs/数据库规划/推荐总体框架.md",
+    "docs/数据库规划/总体架构.md",
+    "docs/数据库规划/L3层级角色总表区分.md",
+    "docs/总览技术路径规划/技术路径.md",
+    "docs/数据库规划/数据库技术实现预览.md",
+    "docs/数据库规划/数据库技术实现预览 copy.md",
+    "docs/数据库规划/PostgreSQL安装与部署.md",
+    "docs/总览技术路径规划/接口协议/接口协议（存档）.md",
     "docs/总览技术路径规划/剧本杀角色提取要素.md",
     "README.md",
     "未命名.md",
-    "backend/database/alembic/versions/0001_initial_schema.py",
-    "backend/database/alembic/versions",
-    "backend/database/alembic/script.py.mako",
-    "backend/database/alembic/env.py",
-    "backend/database/alembic",
-    "alembic.ini",
-    "docker-compose.yml",
-    "backend/database/__init__.py",
-    "backend/database/session.py",
-    "backend/database/models.py",
     "docs/总览技术路径规划/接口协议/接口协议预设.md",
     "docs/总览技术路径规划/相关技术调研.md",
     "docs/总览技术路径规划/接口协议/RESTful 接口预设协议.md",
-    "docs/总览技术路径规划/技术路径.md",
     "docs/总览技术路径规划/项目分阶段详细规划.md",
     "docs/总览技术路径规划/tech-summary-20260331.md",
     "docs/微信图片_20260406123310_2722_791.png",
     "docs/git 相关操作.md",
-    "docs/old/增添新的前端.md",
-    "docs/人设提取维度设计/人设提取案例模板.md",
-    "docs/人设提取维度设计/人设提取.md",
-    "docs/old/为什么剧本杀适合用 LangExtract？.md",
-    "docs/总览技术路径规划/分工详细.md",
-    "docs/old/progress.md",
     "Pasted image 20260122012145.png"
   ]
 }
