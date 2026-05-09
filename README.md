@@ -207,12 +207,6 @@ conda activate charpick
 uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-推荐（更安全，不把密钥写入仓库）
-
-- 把密钥放到环境变量而不是写入 `config.json`。由于当前代码优先从 `config.json` 读取 `llm.remote_api.api_key`，推荐两种可选做法：
-	- 临时运行：在启动时把密钥注入环境并通过 `curl` 或工具在请求时带上 `x-api-key` 头（下方示例）。
-	- 长期安全做法：让我为你做一个小补丁，让后端在加载 `backend/config.json` 后，若检测到环境变量 `REMOTE_API_KEY`，就用该值覆盖配置。这不会把密钥写入版本库。
-
 如何验证远程 API 可用
 
 1) 先测试 `chat` 接口（最小验证，不触发完整提取管线）：
@@ -228,11 +222,10 @@ curl -s -X POST "http://127.0.0.1:8000/chat" \
 
 2) 测试完整提取流程
 
-- 将 `backend/config.json` 中 `llm.provider` 设为 `remote_api` 并确保 `remote_api.base_url` 正确。若不希望把密钥写入文件，请使用 `x-api-key` 头或让我替你打补丁使用 `REMOTE_API_KEY` 环境变量。
+- 将 `backend/config.json` 中 `llm.provider` 设为 `remote_api` 并确保 `remote_api.base_url` 正确。
 - 启动后端后，使用已有的 Orchestrator 或 `/start-extraction`（legacy）来运行提取；注意 legacy 路径部分逻辑可能仍调用本地提取库，若你需要确保新管线完全走远端模型，请使用 `Extract` API 路径（`/api/v1/extract`），但该接口需要有效的 `Authorization: Bearer <token>` 登录态（详见系统的 auth 流程）。
 
 安全提醒
 
 - 切勿将真实 API Key 提交到 Git 仓库。优先使用环境变量或 CI 的 Secret 管理功能。
-- 如果你希望我现在替你实现从环境变量加载 `REMOTE_API_KEY` 的补丁，我可以立即提交一个小修改并更新文档。
 
