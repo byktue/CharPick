@@ -1,0 +1,58 @@
+{
+  "cache": {
+    "root": "local_cache",
+    "unified_format_dir": "local_cache/unified_format",
+    "chapter_content_text_dir": "local_cache/chapter_content_text"
+  },
+  "llm": {
+    "provider": "remote_api",
+    "base_url": "http://localhost:11434",
+    "model": "qwen2.5:0.5b",
+    "temperature": 0.1,
+    "timeout_seconds": 300,
+    "ollama": {
+      "base_url": "http://localhost:11434",
+      "model": "qwen2.5:0.5b",
+      "temperature": 0.1,
+      "timeout_seconds": 300
+    },
+    "remote_api": {
+      "base_url": "https://chat.ecnu.edu.cn/open/api/v1/chat/completions",
+      "api_key": "your_api_key_here",
+      "model_name": "ecnu-max",
+      "temperature": 0.1,
+      "timeout_seconds": 300
+    }
+  },
+  "input_sources": {
+    "text": ["txt", "md", "pdf", "doc", "epub"],
+    "image": ["jpg", "jpeg", "heic", "heif", "png", "webp"],
+    "web": ["url", "html"]
+  },
+  "chapter_prompts": {
+    "chapter_info": "提取章节信息：章节号、章节名、故事时间信息、出场角色。若无相关信息则不要臆造。",
+    "plot": "提取本章剧情：章节概要、关键事件。若无关键事件则不输出该字段。",
+    "characters": "提取本章角色：姓名、性别、年龄、种族、社会关系、外表描述、本章经历行为、性格表现、人物台词。若无则不输出。",
+    "items": "提取本章关键物品：物品名、描述、本章表现、所属角色。若无则不输出。",
+    "world": "提取本章地点与背景设定：出现地点、本章提及世界观。若无则不输出。",
+    "scene_description": "提取本章场景描述：场景名称、环境氛围、光线、声音、气味等感官细节、季节或天气信息、场景对角色行为的影响。若无则不输出。"
+  },
+  "summary_prompts": {
+    "characters": "基于整本书的全部章节提取角色总表。请严格输出 JSON 数组，不要输出 Markdown 代码块，不要输出额外解释。数组中的每个元素都是一个对象，且至少包含 name、summary、identity、appearance、personality 这五个字段；如信息不足，字段可留空字符串，但不要编造。尽量按 [ {\"name\":\"...\",\"summary\":\"...\",\"identity\":\"...\",\"appearance\":\"...\",\"personality\":\"...\"} ] 的格式输出。",
+    "items": "基于整本书的全部章节提取物品总表。请严格输出 JSON 数组，不要输出 Markdown 代码块，不要输出额外解释。数组中的每个元素都是一个对象，且至少包含 name、summary 两个字段；必要时可补充 identity、appearance、personality 等字段，但不要编造。尽量按 [ {\"name\":\"...\",\"summary\":\"...\"} ] 的格式输出。",
+    "storyline_events": "基于整本书的全部章节提取剧情时间线。请输出便于用户阅读的 Markdown 格式，不要输出 JSON，不要输出代码块包裹。建议使用标题、编号列表或表格呈现章节顺序、关键事件、因果关系、时间推进与状态变化；若信息不足，请直接省略，不要编造。",
+    "world_locations": "基于整本书的全部章节提取世界观与地点信息。请输出便于用户阅读的 Markdown 格式，不要输出 JSON，不要输出代码块包裹。建议使用标题、分级小节、列表或表格呈现地点、场景、势力分布、地域关系与世界观设定；若信息不足，请直接省略，不要编造。"
+  },
+  "card_prompts": {
+    "character_card": "你需要基于 summary.characters 中选中的角色条目，并结合对应章节证据，生成可调用的角色展示卡。\n\n## 生成规则\n- 输出内容必须包含：角色名称、简介、外形特征、性格标签、关键经历、经典台词、与其他角色关系。\n- 若 summary 角色条目信息与章节证据不一致，请优先以章节证据修正。\n- 禁止臆造信息，所有内容必须基于原文证据生成。\n\n## 输出格式要求\n- 必须严格使用 Markdown 格式。\n- 不要使用 JSON、不要使用代码块、不要使用表格。\n- 只允许使用标准 Markdown 标题和段落。\n- 按照以下固定结构输出：\n\n# 角色名称\n\n## 简介\n（此处填写角色简介）\n\n## 形象特征\n（此处填写外貌、体态、穿衣风格等描述，如果形象有重大变化，需要标记到对应章节）\n\n## 性格特点\n（简洁描述角色性格特点，如果角色性格有重大变化，需要标记到对应章节）\n\n## 关键经历\n（分点简述角色关键经历）\n\n## 经典台词\n（填写原文中的该角色说过的富有意义，且能体现角色形象的台词，不超过五段台词）\n\n## 与其他角色关系\n（清晰简洁描述与其他角色的关联）"
+  },
+  "card_field_map": [
+    "# 角色名称",
+    "## 简介",
+    "## 形象特征",
+    "## 性格特点",
+    "## 关键经历",
+    "## 经典台词",
+    "## 与其他角色关系"
+  ]
+}

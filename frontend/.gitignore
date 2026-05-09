@@ -1,0 +1,13 @@
+.vscode/
+.cache
+.streamlit
+.npm-cache
+frontend_vue/.npm-cache
+frontend_vue/dist
+frontend_vue/.vite
+frontend_vue/.env.local
+__pycache__
+node_modules
+
+Test_asset/
+

@@ -1,0 +1,1 @@
+把summary中的characters类型的总结更改成json文件记录对应角色的json文件的地址（all.json），不同角色使用不同的json文件进行记录，数据库中存储all.json的地址，而不需要存储单个角色的地址，你理解了吗，先回复我一下你的理解
